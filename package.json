@@ -4,13 +4,14 @@
   "description": "Trading Calendar Desktop Application",
   "main": "main.js",
   "scripts": {
-  "start": "electron .",
-  "pack": "electron-builder --dir",
-  "dist": "electron-builder",
-  "dist:mac": "electron-builder --mac",
-  "dist:win": "electron-builder --win",
-  "dist:linux": "electron-builder --linux"
-},
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "dist:mac": "electron-builder --mac",
+    "dist:win": "electron-builder --win",
+    "dist:linux": "electron-builder --linux",
+    "release": "electron-builder --publish always"
+  },
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
@@ -18,7 +19,9 @@
   },
   "devDependencies": {
     "electron": "^25.3.1",
-    "electron-builder": "^24.4.0"
+    "electron-builder": "^24.4.0",
+    "@electron/notarize": "^2.1.0",
+    "dotenv": "^16.3.1"
   },
   "build": {
     "appId": "com.yourcompany.tradingcalendar",
@@ -32,14 +35,28 @@
       "buildResources": "build",
       "output": "dist"
     },
+    "publish": {
+      "provider": "github",
+      "releaseType": "release"
+    },
+    "afterSign": "scripts/notarize.js",
     "mac": {
       "category": "public.app.category.finance",
       "target": ["dmg", "zip"],
-      "icon": "build/icon.icns"
+      "icon": "build/icon.icns",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist"
     },
     "win": {
       "target": ["nsis", "portable"],
       "icon": "build/icon.ico"
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "category": "Finance",
+      "icon": "build/icon.png"
     }
   }
 }
