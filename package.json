@@ -19,9 +19,7 @@
   },
   "devDependencies": {
     "electron": "^25.3.1",
-    "electron-builder": "^24.4.0",
-    "@electron/notarize": "^2.1.0",
-    "dotenv": "^16.3.1"
+    "electron-builder": "^24.4.0"
   },
   "build": {
     "appId": "com.yourcompany.tradingcalendar",
@@ -39,15 +37,11 @@
       "provider": "github",
       "releaseType": "release"
     },
-    "afterSign": "scripts/notarize.js",
     "mac": {
       "category": "public.app.category.finance",
       "target": ["dmg", "zip"],
       "icon": "build/icon.icns",
-      "hardenedRuntime": true,
-      "gatekeeperAssess": false,
-      "entitlements": "build/entitlements.mac.plist",
-      "entitlementsInherit": "build/entitlements.mac.plist"
+      "identity": null
     },
     "win": {
       "target": ["nsis", "portable"],
