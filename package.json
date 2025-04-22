@@ -4,12 +4,13 @@
   "description": "Trading Calendar Desktop Application",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder",
-    "dist:mac": "electron-builder --mac",
-    "dist:win": "electron-builder --win"
-  },
+  "start": "electron .",
+  "pack": "electron-builder --dir",
+  "dist": "electron-builder",
+  "dist:mac": "electron-builder --mac",
+  "dist:win": "electron-builder --win",
+  "dist:linux": "electron-builder --linux"
+},
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
